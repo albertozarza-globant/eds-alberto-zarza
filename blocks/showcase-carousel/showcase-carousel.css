@@ -88,8 +88,7 @@ main > .section.showcase-carousel-container .showcase-carousel-wrapper {
   gap: 4px;
   max-width: min(820px, calc(100% - clamp(40px, 10vw, 160px)));
   border: 0;
-  border-left: 4px solid var(--accent-color);
-  padding: clamp(8px, 1vw, 12px) 0 clamp(8px, 1vw, 12px) clamp(14px, 2vw, 24px);
+  padding: clamp(8px, 1vw, 12px) 0;
   background: transparent;
   opacity: 0.55;
   transform: translateY(14px);
@@ -123,9 +122,9 @@ main > .section.showcase-carousel-container .showcase-carousel-wrapper {
   color: #fff;
   font-family: var(--heading-font-family), 'Arial Black', impact, sans-serif;
   font-weight: 900;
-  font-size: clamp(3rem, 9vw, 9rem);
-  line-height: 0.86;
-  letter-spacing: 0.08em;
+  font-size: clamp(2rem, 6.2vw, 5.8rem);
+  line-height: 0.9;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   text-shadow: 0 12px 26px rgb(0 0 0 / 48%);
   text-wrap: balance;
@@ -237,10 +236,6 @@ main > .section.showcase-carousel-container .showcase-carousel-wrapper {
     linear-gradient(180deg, rgb(6 6 8 / 12%) 0%, rgb(6 6 8 / 90%) 90%);
 }
 
-.showcase-carousel.style-cinematic .showcase-carousel-content {
-  border-left-color: rgb(255 255 255 / 68%);
-}
-
 .showcase-carousel.style-cinematic .showcase-carousel-content h1,
 .showcase-carousel.style-cinematic .showcase-carousel-content h2,
 .showcase-carousel.style-cinematic .showcase-carousel-content h3 {
@@ -251,8 +246,8 @@ main > .section.showcase-carousel-container .showcase-carousel-wrapper {
 }
 
 .showcase-carousel.style-cinematic .showcase-carousel-content .showcase-carousel-title {
-  font-size: clamp(3.4rem, 10vw, 10.5rem);
-  letter-spacing: 0.09em;
+  font-size: clamp(2.35rem, 7.2vw, 7rem);
+  letter-spacing: 0.07em;
 }
 
 .showcase-carousel.style-cinematic .showcase-carousel-content .button {
@@ -272,8 +267,8 @@ main > .section.showcase-carousel-container .showcase-carousel-wrapper {
 }
 
 .showcase-carousel.style-minimal .showcase-carousel-content .showcase-carousel-title {
-  font-size: clamp(2.6rem, 7.8vw, 8rem);
-  letter-spacing: 0.06em;
+  font-size: clamp(1.95rem, 5.9vw, 5.6rem);
+  letter-spacing: 0.05em;
 }
 
 .showcase-carousel.style-minimal .showcase-carousel-content p {
@@ -281,7 +276,6 @@ main > .section.showcase-carousel-container .showcase-carousel-wrapper {
 }
 
 .showcase-carousel.style-minimal .showcase-carousel-content {
-  border-left: 0;
   padding-left: 0;
   background: transparent;
 }
