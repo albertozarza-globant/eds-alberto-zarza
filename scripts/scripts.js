@@ -152,43 +152,6 @@ function setInitialHeroHeaderMode(main) {
   document.body.classList.toggle('has-hero-header', !!heroInFirstSection);
 }
 
-function decorateRevealOnScroll(main) {
-  const targets = [
-    ...main.querySelectorAll('.hero .hero-content'),
-    ...main.querySelectorAll('.columns > div > div'),
-    ...main.querySelectorAll('.cards > ul > li'),
-    ...main.querySelectorAll('.showcase-carousel .showcase-carousel-content'),
-    ...main.querySelectorAll('.default-content-wrapper > h2'),
-    ...main.querySelectorAll('.default-content-wrapper > h3'),
-    ...main.querySelectorAll('.default-content-wrapper > p'),
-  ];
-
-  if (targets.length === 0) return;
-
-  targets.forEach((target) => target.classList.add('reveal-on-scroll'));
-
-  if (!('IntersectionObserver' in window)) {
-    targets.forEach((target) => target.classList.add('is-visible'));
-    return;
-  }
-
-  const observer = new IntersectionObserver(
-    (entries, intersectionObserver) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add('is-visible');
-        intersectionObserver.unobserve(entry.target);
-      });
-    },
-    {
-      rootMargin: '0px 0px -10% 0px',
-      threshold: 0.14,
-    },
-  );
-
-  targets.forEach((target) => observer.observe(target));
-}
-
 /**
  * Loads everything needed to get to LCP.
  * @param {Element} doc The container element
@@ -225,7 +188,6 @@ async function loadLazy(doc) {
   await loadSections(main);
   setupHeroHeaderMode(main);
   trackScrollState();
-  decorateRevealOnScroll(main);
 
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;

@@ -19,6 +19,49 @@ function markActiveNavigation(navSections) {
   });
 }
 
+function decorateBrandIcon(navBrand) {
+  if (!navBrand) return;
+
+  const brandIconPath = getMetadata('brand-icon');
+  const brandLink = navBrand.querySelector('a:any-link');
+  const iconTarget = brandLink || navBrand;
+  if (!brandIconPath || !iconTarget) return;
+
+  const brandIconAlt = getMetadata('brand-icon-alt') || 'Brand icon';
+  const iconSizeMeta = Number.parseInt(getMetadata('brand-icon-size'), 10);
+  const iconSize = Number.isFinite(iconSizeMeta) && iconSizeMeta > 0 ? iconSizeMeta : 64;
+
+  const currentIcon = iconTarget.querySelector(':scope > .nav-brand-icon');
+  if (currentIcon) currentIcon.remove();
+
+  const imageOnlyLogo = iconTarget.children.length === 1
+    && iconTarget.firstElementChild?.tagName === 'IMG'
+    && iconTarget.textContent.trim() === '';
+
+  if (imageOnlyLogo) {
+    const logo = iconTarget.firstElementChild;
+    logo.classList.add('nav-brand-icon');
+    logo.src = new URL(brandIconPath, window.location.href).href;
+    logo.alt = brandIconAlt;
+    logo.width = iconSize;
+    logo.height = iconSize;
+    navBrand.classList.add('has-brand-icon');
+    return;
+  }
+
+  const icon = document.createElement('img');
+  icon.className = 'nav-brand-icon';
+  icon.src = new URL(brandIconPath, window.location.href).href;
+  icon.alt = brandIconAlt;
+  icon.width = iconSize;
+  icon.height = iconSize;
+  icon.loading = 'eager';
+  icon.decoding = 'async';
+
+  iconTarget.prepend(icon);
+  navBrand.classList.add('has-brand-icon');
+}
+
 function closeOnEscape(e) {
   if (e.code === 'Escape') {
     const nav = document.getElementById('nav');
@@ -152,12 +195,17 @@ export default async function decorate(block) {
   });
 
   const navBrand = nav.querySelector('.nav-brand');
+  const navBrandLink = navBrand?.querySelector('a:any-link');
+  if (navBrandLink) navBrandLink.classList.add('nav-brand-link');
+
   const brandLink = navBrand?.querySelector('.button');
   if (brandLink) {
     brandLink.className = '';
     const buttonContainer = brandLink.closest('.button-container');
     if (buttonContainer) buttonContainer.className = '';
   }
+
+  decorateBrandIcon(navBrand);
 
   const navSections = nav.querySelector('.nav-sections');
   if (navSections) {

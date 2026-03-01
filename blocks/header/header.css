@@ -46,7 +46,7 @@ header nav {
   max-width: 1280px;
   min-height: var(--nav-height);
   padding: 0 20px;
-  color: #f5f5f7;
+  color: #fff;
   font-family: var(--body-font-family);
 }
 
@@ -135,10 +135,23 @@ header nav .nav-brand {
   line-height: 1;
 }
 
-header nav .nav-brand img {
+header nav .nav-brand .nav-brand-link {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(10px, 1.5vw, 18px);
+}
+
+header nav .nav-brand img:not(.nav-brand-icon) {
   width: clamp(114px, 31vw, 162px);
   height: auto;
   filter: brightness(1.08);
+}
+
+header nav .nav-brand .nav-brand-icon {
+  width: clamp(48px, 8vw, 68px);
+  height: clamp(48px, 8vw, 68px);
+  object-fit: contain;
+  filter: none;
 }
 
 header nav .nav-sections {
@@ -172,10 +185,11 @@ header nav .nav-sections .default-content-wrapper > ul > li > a {
   display: inline-flex;
   align-items: center;
   min-height: 2.4rem;
-  font-family: var(--heading-font-family);
-  font-size: 0.99rem;
+  color: #fff;
+  font-family: speed-heading, 'Avenir Next Condensed', 'Arial Narrow', sans-serif;
+  font-size: 1.03rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
 }
 
@@ -201,7 +215,7 @@ header nav .nav-sections .default-content-wrapper > ul > li > ul > li > a {
   display: inline-flex;
   min-height: 2rem;
   font-size: var(--body-font-size-xs);
-  color: rgb(245 245 247 / 82%);
+  color: #fff;
 }
 
 header nav .nav-sections .default-content-wrapper > ul > li > a[aria-current='page']::after {
@@ -283,7 +297,7 @@ header nav .nav-tools :where(a:any-link:hover) {
   header nav .nav-sections .default-content-wrapper > ul {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 16px;
   }
 
   header nav .nav-sections .default-content-wrapper > ul > li {
@@ -294,7 +308,7 @@ header nav .nav-tools :where(a:any-link:hover) {
 
   header nav .nav-sections .default-content-wrapper > ul > li > a {
     min-height: var(--nav-height);
-    padding: 0 12px;
+    padding: 0 4px;
   }
 
   header nav .nav-sections .default-content-wrapper > ul > li:hover > a::after,
@@ -314,7 +328,7 @@ header nav .nav-tools :where(a:any-link:hover) {
     right: 6px;
     width: 7px;
     height: 7px;
-    border: 1.5px solid rgb(255 255 255 / 76%);
+    border: 1.5px solid #fff;
     border-width: 0 1.5px 1.5px 0;
     transform: rotate(45deg);
     transition: transform 0.2s ease;
