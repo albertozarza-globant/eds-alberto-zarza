@@ -1,8 +1,4 @@
-main > .section.showcase-carousel-container > div {
-  max-width: unset;
-  padding: 0;
-}
-
+main > .section.showcase-carousel-container > div,
 main > .section.showcase-carousel-container .showcase-carousel-wrapper {
   max-width: unset;
   padding: 0;
@@ -12,14 +8,14 @@ main > .section.showcase-carousel-container .showcase-carousel-wrapper {
   position: relative;
   width: 100%;
   color: #fff;
-  background-color: #07070a;
+  background-color: #090d13;
   overflow: hidden;
 }
 
 .showcase-carousel .showcase-carousel-viewport {
   overflow: hidden;
   border-radius: 0;
-  background-color: #07070a;
+  background-color: #090d13;
 }
 
 .showcase-carousel .showcase-carousel-track {
@@ -28,18 +24,16 @@ main > .section.showcase-carousel-container .showcase-carousel-wrapper {
   margin: 0;
   padding: 0;
   list-style: none;
-  transition: transform 0.68s cubic-bezier(0.22, 0.61, 0.36, 1);
+  transition: transform 0.72s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 .showcase-carousel .showcase-carousel-slide {
+  position: relative;
   flex: 0 0 100%;
   width: 100%;
-  max-width: 100%;
-  position: relative;
-  min-width: 100%;
-  min-height: clamp(460px, 78vh, 920px);
+  min-height: clamp(500px, 82vh, 980px);
   overflow: hidden;
-  opacity: 0.84;
+  opacity: 0.8;
   transition: opacity 0.44s ease;
 }
 
@@ -52,7 +46,7 @@ main > .section.showcase-carousel-container .showcase-carousel-wrapper {
   position: absolute;
   inset: 0;
   line-height: 0;
-  background-color: #07070a;
+  background-color: #090d13;
 }
 
 .showcase-carousel .showcase-carousel-media::after {
@@ -60,8 +54,8 @@ main > .section.showcase-carousel-container .showcase-carousel-wrapper {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgb(6 6 8 / 45%) 0%, rgb(6 6 8 / 12%) 52%, rgb(6 6 8 / 32%) 100%),
-    linear-gradient(180deg, rgb(6 6 8 / 14%) 0%, rgb(6 6 8 / 78%) 88%);
+    linear-gradient(90deg, rgb(6 8 12 / 60%) 0%, rgb(6 8 12 / 18%) 56%, rgb(6 8 12 / 42%) 100%),
+    linear-gradient(180deg, rgb(6 8 12 / 10%) 0%, rgb(6 8 12 / 84%) 90%);
 }
 
 .showcase-carousel .showcase-carousel-media picture,
@@ -74,24 +68,19 @@ main > .section.showcase-carousel-container .showcase-carousel-wrapper {
   object-fit: cover;
   object-position: center;
   border-radius: 0;
-  transform: scale(1.03);
-  transition: transform 0.95s ease;
+  transform: scale(1.04);
+  transition: transform 1s ease;
 }
 
 .showcase-carousel .showcase-carousel-content {
   position: absolute;
   z-index: 2;
-  right: auto;
-  bottom: clamp(24px, 5.8vw, 84px);
-  left: clamp(20px, 5vw, 80px);
-  display: grid;
-  gap: 4px;
-  max-width: min(820px, calc(100% - clamp(40px, 10vw, 160px)));
-  border: 0;
+  bottom: clamp(28px, 6vw, 92px);
+  left: clamp(20px, 5vw, 82px);
+  max-width: min(900px, calc(100% - clamp(40px, 10vw, 160px)));
   padding: clamp(8px, 1vw, 12px) 0;
-  background: transparent;
-  opacity: 0.55;
-  transform: translateY(14px);
+  opacity: 0.52;
+  transform: translateY(16px);
   transition: opacity 0.48s ease, transform 0.48s ease;
 }
 
@@ -103,70 +92,66 @@ main > .section.showcase-carousel-container .showcase-carousel-wrapper {
   margin-bottom: 0;
 }
 
-.showcase-carousel .showcase-carousel-content h1,
-.showcase-carousel .showcase-carousel-content h2,
-.showcase-carousel .showcase-carousel-content h3 {
-  color: #fff;
-  font-family: var(--heading-font-family);
-  font-weight: 900;
-  font-size: clamp(2.6rem, 7.2vw, 7.2rem);
-  line-height: 0.9;
-  letter-spacing: 0.055em;
-  text-transform: uppercase;
-  text-shadow: 0 10px 24px rgb(0 0 0 / 44%);
-  text-wrap: balance;
-}
-
 .showcase-carousel .showcase-carousel-content .showcase-carousel-title {
   margin: 0;
   color: #fff;
   font-family: var(--heading-font-family), 'Arial Black', impact, sans-serif;
   font-weight: 900;
-  font-size: clamp(2rem, 6.2vw, 5.8rem);
+  font-size: clamp(2.1rem, 6.4vw, 6rem);
   line-height: 0.9;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  text-shadow: 0 12px 26px rgb(0 0 0 / 48%);
+  text-shadow: 0 12px 28px rgb(0 0 0 / 48%);
   text-wrap: balance;
 }
 
-.showcase-carousel .showcase-carousel-content p {
+.showcase-carousel .showcase-carousel-content h1,
+.showcase-carousel .showcase-carousel-content h2,
+.showcase-carousel .showcase-carousel-content h3 {
+  margin: 0;
+  color: #fff;
+  font-family: var(--heading-font-family);
+  font-weight: 900;
+  font-size: clamp(2rem, 5.8vw, 5.4rem);
+  line-height: 0.92;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-shadow: 0 10px 24px rgb(0 0 0 / 44%);
+  text-wrap: balance;
+}
+
+.showcase-carousel .showcase-carousel-content p,
+.showcase-carousel .showcase-carousel-content .showcase-carousel-copy {
   max-width: 64ch;
-  margin-top: 0.55em;
-  color: rgb(255 255 255 / 93%);
-  font-size: clamp(1.05rem, 1.7vw, 1.44rem);
+  margin-top: 0.6em;
+  color: rgb(237 242 249 / 90%);
+  font-size: clamp(1.04rem, 1.45vw, 1.3rem);
   text-shadow: 0 4px 14px rgb(0 0 0 / 34%);
   text-wrap: pretty;
 }
 
-.showcase-carousel .showcase-carousel-content .showcase-carousel-copy {
-  font-size: clamp(1.05rem, 1.7vw, 1.44rem);
-}
-
 .showcase-carousel .showcase-carousel-content a:any-link {
   color: #fff;
-  text-decoration-color: rgb(255 255 255 / 60%);
+  text-decoration-color: rgb(255 255 255 / 56%);
 }
 
 .showcase-carousel .showcase-carousel-content a:any-link:hover {
-  color: #fff;
   text-decoration-color: #fff;
 }
 
 .showcase-carousel .showcase-carousel-content .button {
   margin-top: 10px;
-  border: 1px solid rgb(255 255 255 / 52%);
-  background: rgb(255 255 255 / 12%);
-  backdrop-filter: blur(3px);
+  border-color: transparent;
+  background: linear-gradient(90deg, #d52a3d 0%, #ff4358 56%, #ff6575 100%);
   color: #fff;
 }
 
 .showcase-carousel .showcase-carousel-controls {
   position: absolute;
   z-index: 3;
-  right: clamp(20px, 5vw, 80px);
+  right: clamp(20px, 5vw, 82px);
   bottom: clamp(16px, 2.6vw, 34px);
-  left: clamp(20px, 5vw, 80px);
+  left: clamp(20px, 5vw, 82px);
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -177,21 +162,21 @@ main > .section.showcase-carousel-container .showcase-carousel-wrapper {
 .showcase-carousel .showcase-carousel-next {
   display: inline-grid;
   place-items: center;
-  width: 2.6rem;
-  height: 2.6rem;
+  width: 2.65rem;
+  height: 2.65rem;
   margin: 0;
   border: 1px solid rgb(255 255 255 / 34%);
   border-radius: 999px;
   padding: 0;
-  background-color: rgb(255 255 255 / 8%);
   color: #fff;
+  background-color: rgb(255 255 255 / 10%);
   box-shadow: none;
 }
 
 .showcase-carousel .showcase-carousel-prev:hover,
 .showcase-carousel .showcase-carousel-next:hover {
-  border-color: #fff;
-  background-color: rgb(255 255 255 / 22%);
+  border-color: rgb(255 255 255 / 72%);
+  background-color: rgb(255 255 255 / 24%);
 }
 
 .showcase-carousel .showcase-carousel-dots {
@@ -207,12 +192,12 @@ main > .section.showcase-carousel-container .showcase-carousel-wrapper {
   border: 0;
   border-radius: 999px;
   padding: 0;
-  background-color: rgb(255 255 255 / 52%);
+  background-color: rgb(255 255 255 / 46%);
   box-shadow: none;
 }
 
 .showcase-carousel .showcase-carousel-dot.is-active {
-  width: 28px;
+  width: 30px;
   background-color: var(--accent-color);
 }
 
@@ -220,72 +205,45 @@ main > .section.showcase-carousel-container .showcase-carousel-wrapper {
   display: none;
 }
 
-.showcase-carousel.style-cinematic .showcase-carousel-media img,
-.showcase-carousel.fit-cover .showcase-carousel-media img {
-  object-fit: cover;
-}
-
-.showcase-carousel.fit-contain .showcase-carousel-media img {
-  object-fit: contain;
-  background-color: #07070a;
-}
-
 .showcase-carousel.style-cinematic .showcase-carousel-media::after {
   background:
-    linear-gradient(90deg, rgb(6 6 8 / 55%) 0%, rgb(6 6 8 / 8%) 52%, rgb(6 6 8 / 35%) 100%),
-    linear-gradient(180deg, rgb(6 6 8 / 12%) 0%, rgb(6 6 8 / 90%) 90%);
-}
-
-.showcase-carousel.style-cinematic .showcase-carousel-content h1,
-.showcase-carousel.style-cinematic .showcase-carousel-content h2,
-.showcase-carousel.style-cinematic .showcase-carousel-content h3 {
-  font-weight: 900;
-  font-size: clamp(3rem, 9vw, 9rem);
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
+    linear-gradient(90deg, rgb(6 8 12 / 68%) 0%, rgb(6 8 12 / 12%) 56%, rgb(6 8 12 / 48%) 100%),
+    linear-gradient(180deg, rgb(6 8 12 / 8%) 0%, rgb(6 8 12 / 90%) 92%);
 }
 
 .showcase-carousel.style-cinematic .showcase-carousel-content .showcase-carousel-title {
-  font-size: clamp(2.35rem, 7.2vw, 7rem);
-  letter-spacing: 0.07em;
+  font-size: clamp(2.35rem, 7.4vw, 7.4rem);
+  letter-spacing: 0.08em;
 }
 
 .showcase-carousel.style-cinematic .showcase-carousel-content .button {
-  border-color: var(--accent-color);
-  background: linear-gradient(90deg, #9a0915 0%, #cf1020 56%, #ed2a3a 100%);
+  background: linear-gradient(90deg, #c42436 0%, #ff4358 56%, #ff6f7e 100%);
 }
 
 .showcase-carousel.style-minimal .showcase-carousel-media::after {
-  background: linear-gradient(180deg, rgb(6 6 8 / 8%) 0%, rgb(6 6 8 / 46%) 80%);
-}
-
-.showcase-carousel.style-minimal .showcase-carousel-content h1,
-.showcase-carousel.style-minimal .showcase-carousel-content h2,
-.showcase-carousel.style-minimal .showcase-carousel-content h3 {
-  text-transform: uppercase;
-  letter-spacing: 0.045em;
-}
-
-.showcase-carousel.style-minimal .showcase-carousel-content .showcase-carousel-title {
-  font-size: clamp(1.95rem, 5.9vw, 5.6rem);
-  letter-spacing: 0.05em;
-}
-
-.showcase-carousel.style-minimal .showcase-carousel-content p {
-  color: rgb(255 255 255 / 94%);
+  background: linear-gradient(180deg, rgb(6 8 12 / 8%) 0%, rgb(6 8 12 / 48%) 82%);
 }
 
 .showcase-carousel.style-minimal .showcase-carousel-content {
-  padding-left: 0;
-  background: transparent;
+  max-width: min(760px, calc(100% - clamp(40px, 10vw, 160px)));
+}
+
+.showcase-carousel.style-minimal .showcase-carousel-content .showcase-carousel-title {
+  font-size: clamp(1.9rem, 5.8vw, 5.2rem);
+  letter-spacing: 0.045em;
 }
 
 .showcase-carousel.style-minimal .showcase-carousel-controls {
   justify-content: center;
 }
 
-.showcase-carousel.style-clean .showcase-carousel-content {
-  max-width: min(760px, calc(100% - clamp(40px, 10vw, 160px)));
+.showcase-carousel.fit-contain .showcase-carousel-media img {
+  object-fit: contain;
+  background-color: #090d13;
+}
+
+.showcase-carousel.fit-cover .showcase-carousel-media img {
+  object-fit: cover;
 }
 
 .showcase-carousel .showcase-carousel-slide.is-active {
@@ -302,11 +260,7 @@ main > .section.showcase-carousel-container .showcase-carousel-wrapper {
 }
 
 body.has-hero-header .showcase-carousel.showcase-integrated .showcase-carousel-slide {
-  min-height: clamp(560px, 92vh, 1080px);
-}
-
-body.has-hero-header .showcase-carousel.showcase-integrated .showcase-carousel-content {
-  bottom: clamp(24px, 6vw, 84px);
+  min-height: clamp(600px, 96vh, 1120px);
 }
 
 @media (width >= 600px) {
@@ -318,17 +272,11 @@ body.has-hero-header .showcase-carousel.showcase-integrated .showcase-carousel-c
 @media (width >= 900px) {
   .showcase-carousel .showcase-carousel-content {
     left: clamp(30px, 5vw, 92px);
-    max-width: min(920px, calc(100% - clamp(60px, 10vw, 184px)));
+    max-width: min(980px, calc(100% - clamp(60px, 10vw, 184px)));
   }
 
   .showcase-carousel .showcase-carousel-controls {
-    left: clamp(30px, 5vw, 92px);
     right: clamp(30px, 5vw, 92px);
-  }
-}
-
-@media (width >= 1200px) {
-  .showcase-carousel .showcase-carousel-content {
-    max-width: min(960px, 70vw);
+    left: clamp(30px, 5vw, 92px);
   }
 }

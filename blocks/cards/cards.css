@@ -23,9 +23,10 @@
   overflow: hidden;
   border: 1px solid var(--border-color);
   border-radius: var(--radius-m);
-  background-color: var(--surface-color);
-  box-shadow: 0 14px 30px rgb(17 17 15 / 7%);
-  transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+  background:
+    linear-gradient(180deg, rgb(28 36 49 / 92%) 0%, rgb(20 27 37 / 94%) 100%);
+  box-shadow: 0 22px 44px rgb(0 0 0 / 26%);
+  transition: transform 0.24s ease, border-color 0.24s ease, box-shadow 0.24s ease;
 }
 
 .cards > ul > li.cards-card-linked {
@@ -33,9 +34,9 @@
 }
 
 .cards > ul > li.cards-card-linked:hover {
-  transform: translateY(-4px);
-  border-color: rgb(207 16 32 / 36%);
-  box-shadow: 0 18px 34px rgb(17 17 15 / 12%);
+  transform: translateY(-6px);
+  border-color: rgb(255 89 106 / 52%);
+  box-shadow: 0 28px 54px rgb(0 0 0 / 34%);
 }
 
 .cards > ul > li.cards-card-linked:focus-visible {
@@ -45,7 +46,7 @@
 
 .cards .cards-card-image {
   line-height: 0;
-  background-color: var(--surface-color-muted);
+  background-color: rgb(11 15 21);
 }
 
 .cards > ul > li img {
@@ -53,18 +54,18 @@
   aspect-ratio: var(--cards-image-ratio);
   object-fit: cover;
   border-radius: 0;
-  transition: transform 0.35s ease;
+  transition: transform 0.45s ease;
 }
 
 .cards > ul > li.cards-card-linked:hover img {
-  transform: scale(1.03);
+  transform: scale(1.05);
 }
 
 .cards .cards-card-body {
   display: flex;
   flex: 1;
   flex-direction: column;
-  gap: 8px;
+  gap: 9px;
   margin: 0;
   padding: var(--cards-card-padding);
 }
@@ -81,14 +82,22 @@
   margin-bottom: 0;
 }
 
-.cards .cards-card-body p {
-  color: var(--text-color-muted);
+.cards .cards-card-body h1,
+.cards .cards-card-body h2,
+.cards .cards-card-body h3,
+.cards .cards-card-body h4 {
+  color: #fff;
+}
+
+.cards .cards-card-body p,
+.cards .cards-card-body li {
+  color: rgb(237 242 249 / 74%);
 }
 
 .cards.cards-align-center .cards-card-body,
 .cards > ul > li.cards-align-center .cards-card-body {
-  text-align: center;
   align-items: center;
+  text-align: center;
 }
 
 .cards.cards-gap-compact {
@@ -97,8 +106,8 @@
 }
 
 .cards.cards-gap-spacious {
-  --cards-gap: 32px;
-  --cards-card-padding: 30px;
+  --cards-gap: 34px;
+  --cards-card-padding: 32px;
 }
 
 .cards.cards-image-16-9 {
@@ -118,19 +127,18 @@
 }
 
 .cards.cards-style-outline > ul > li {
-  border-width: 2px;
   box-shadow: none;
 }
 
 .cards.cards-style-minimal > ul > li {
   border: 0;
-  box-shadow: 0 10px 22px rgb(17 17 15 / 5%);
+  box-shadow: 0 16px 30px rgb(0 0 0 / 24%);
 }
 
 .cards.cards-style-glass > ul > li {
-  border-color: rgb(255 255 255 / 26%);
-  background-color: rgb(255 255 255 / 66%);
-  backdrop-filter: blur(4px);
+  border-color: rgb(255 255 255 / 22%);
+  background: rgb(237 242 249 / 8%);
+  backdrop-filter: blur(8px);
 }
 
 .cards.cards-layout-stack > ul {
@@ -138,8 +146,8 @@
 }
 
 .cards > ul > li.cards-tone-dark {
-  border-color: #22262f;
-  background: linear-gradient(180deg, #181a20 0%, #101217 100%);
+  border-color: #2e3c52;
+  background: linear-gradient(180deg, #1d2532 0%, #141c28 100%);
 }
 
 .cards > ul > li.cards-tone-dark h1,
@@ -148,12 +156,14 @@
 .cards > ul > li.cards-tone-dark h4,
 .cards > ul > li.cards-tone-dark p,
 .cards > ul > li.cards-tone-dark li {
-  color: #f2f3f7;
+  color: #eef3fa;
 }
 
 .cards > ul > li.cards-tone-accent {
-  border-color: rgb(143 6 17 / 55%);
-  background: linear-gradient(180deg, rgb(207 16 32 / 12%) 0%, #fff 100%);
+  border-color: rgb(255 89 106 / 46%);
+  background:
+    radial-gradient(circle at 100% 0%, rgb(255 89 106 / 18%) 0%, rgb(255 89 106 / 0%) 44%),
+    linear-gradient(180deg, #231822 0%, #161923 100%);
 }
 
 .cards.cards-layout-feature > ul > li:first-child,
@@ -162,8 +172,8 @@
 }
 
 .cards > ul > li.cards-variant-featured {
-  border-color: rgb(207 16 32 / 38%);
-  box-shadow: 0 18px 34px rgb(15 15 15 / 13%);
+  border-color: rgb(255 89 106 / 55%);
+  box-shadow: 0 26px 52px rgb(0 0 0 / 34%);
 }
 
 @media (width >= 600px) {
@@ -179,7 +189,7 @@
 
   .cards.cards-layout-feature > ul > li:first-child {
     display: grid;
-    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
     align-items: stretch;
   }
 
