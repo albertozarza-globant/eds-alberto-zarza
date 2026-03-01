@@ -1,5 +1,6 @@
 {
   "mappings": [
+    "/content/eds-alberto-zarza/:/",
     "/content/eds-alberto-zarza/es:/es/",
     "/content/eds-alberto-zarza/en:/en/",
     "/content/eds-alberto-zarza/fr:/fr/"
