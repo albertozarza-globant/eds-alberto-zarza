@@ -108,11 +108,20 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
-  // load nav as fragment
+  // Language root detection and path adjustment
+  const supportedLocales = ['es', 'fr', 'jp', 'de'];
+  const pathParts = window.location.pathname.split('/').filter(Boolean);
+  let langRoot = '';
+  if (pathParts.length > 0 && supportedLocales.includes(pathParts[0])) {
+    langRoot = `/${pathParts[0]}`;
+  }
   const navMeta = getMetadata('nav');
-  const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
+  let navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
+  if (langRoot && !navPath.startsWith(`${langRoot}/`)) {
+    navPath = `${langRoot}${navPath}`;
+  }
   const fragment = await loadFragment(navPath);
-
+  
   // decorate nav DOM
   block.textContent = '';
   const nav = document.createElement('nav');
