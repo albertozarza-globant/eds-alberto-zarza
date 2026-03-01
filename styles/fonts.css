@@ -1,5 +1,29 @@
 /* stylelint-disable max-line-length */
 @font-face {
+  font-family: speed-heading;
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('DIN Condensed Bold'), local('Avenir Next Condensed Demi Bold'), local('Arial Narrow Bold');
+}
+
+@font-face {
+  font-family: speed-body;
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Avenir Next Regular'), local('Avenir Next'), local('SF Pro Text'), local('Segoe UI');
+}
+
+@font-face {
+  font-family: speed-body;
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Avenir Next Demi Bold'), local('Avenir Next Bold'), local('SF Pro Display Semibold'), local('Segoe UI Semibold');
+}
+
+@font-face {
   font-family: roboto-condensed;
   font-style: normal;
   font-weight: 700;

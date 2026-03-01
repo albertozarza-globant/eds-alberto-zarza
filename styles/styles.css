@@ -27,8 +27,8 @@
   --accent-color-strong: #8f0611;
 
   /* fonts */
-  --body-font-family: roboto, roboto-fallback, 'Helvetica Neue', sans-serif;
-  --heading-font-family: roboto-condensed, roboto-condensed-fallback, 'Helvetica Neue', sans-serif;
+  --body-font-family: speed-body, 'Avenir Next', avenir, -apple-system, blinkmacsystemfont, 'Segoe UI', sans-serif;
+  --heading-font-family: speed-heading, 'DIN Condensed', 'Arial Narrow', roboto-condensed, roboto-condensed-fallback, sans-serif;
 
   /* body sizes */
   --body-font-size-m: 1rem;
@@ -106,6 +106,10 @@ body {
 
 body.appear {
   display: block;
+}
+
+body.has-hero-header header {
+  height: 0;
 }
 
 header .header,
@@ -293,6 +297,10 @@ main > .section > div {
 
 main > .section:first-of-type {
   margin-top: calc(var(--section-spacing) * 0.55);
+}
+
+body.has-hero-header main > .section:first-of-type {
+  margin-top: 0;
 }
 
 main > .section > div > *:first-child {

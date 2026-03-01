@@ -1,4 +1,5 @@
 import {
+  buildBlock,
   loadHeader,
   loadFooter,
   decorateButtons,
@@ -62,9 +63,37 @@ async function loadFonts() {
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
  */
-function buildAutoBlocks() {
+function buildAutoBlocks(main) {
+  const buildHeroBlock = () => {
+    const firstSection = main.querySelector(':scope > div');
+    if (!firstSection || firstSection.querySelector(':scope > .hero')) return;
+
+    const directChildren = [...firstSection.children];
+    const heading = directChildren.find((element) => element.tagName === 'H1');
+    if (!heading) return;
+
+    const heroMedia = directChildren.find((element) => {
+      const hasPicture = !!element.querySelector('picture');
+      if (!hasPicture) return false;
+      return element.childElementCount === 1 || element.textContent.trim() === '';
+    });
+
+    const heroContent = directChildren
+      .filter((element) => element !== heroMedia && ['H1', 'H2', 'P'].includes(element.tagName))
+      .slice(0, 5);
+
+    if (!heroContent.length) return;
+
+    const row = heroMedia
+      ? [heroMedia, { elems: heroContent }]
+      : [{ elems: heroContent }];
+    const heroBlock = buildBlock('hero', [row]);
+    firstSection.prepend(heroBlock);
+    firstSection.classList.add('auto-hero-section');
+  };
+
   try {
-    // TODO: add auto block, if needed
+    buildHeroBlock();
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
@@ -99,11 +128,28 @@ function getDocumentLanguage() {
 
 function trackScrollState() {
   const onScroll = () => {
-    document.body.classList.toggle('is-scrolled', window.scrollY > 8);
+    document.body.classList.toggle('is-scrolled', window.scrollY > 10);
   };
 
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
+}
+
+function setupHeroHeaderMode(main) {
+  const firstSection = main.querySelector(':scope > .section:first-of-type');
+  const heroInFirstSection = firstSection?.querySelector('.hero');
+  const hasHeroHeader = !!heroInFirstSection;
+
+  document.body.classList.toggle('has-hero-header', hasHeroHeader);
+  if (heroInFirstSection) {
+    heroInFirstSection.classList.add('hero-integrated');
+  }
+}
+
+function setInitialHeroHeaderMode(main) {
+  const firstSection = main.querySelector(':scope > div:first-of-type');
+  const heroInFirstSection = firstSection?.querySelector('.hero');
+  document.body.classList.toggle('has-hero-header', !!heroInFirstSection);
 }
 
 function decorateRevealOnScroll(main) {
@@ -153,6 +199,7 @@ async function loadEager(doc) {
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
+    setInitialHeroHeaderMode(main);
     document.body.classList.add('appear');
     await loadSection(main.querySelector('.section'), waitForFirstImage);
   }
@@ -176,6 +223,7 @@ async function loadLazy(doc) {
 
   const main = doc.querySelector('main');
   await loadSections(main);
+  setupHeroHeaderMode(main);
   trackScrollState();
   decorateRevealOnScroll(main);
 
