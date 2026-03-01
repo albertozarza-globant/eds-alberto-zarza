@@ -138,18 +138,23 @@ function trackScrollState() {
 function setupHeroHeaderMode(main) {
   const firstSection = main.querySelector(':scope > .section:first-of-type');
   const heroInFirstSection = firstSection?.querySelector('.hero');
-  const hasHeroHeader = !!heroInFirstSection;
+  const carouselInFirstSection = firstSection?.querySelector('.showcase-carousel');
+  const hasHeroHeader = !!heroInFirstSection || !!carouselInFirstSection;
 
   document.body.classList.toggle('has-hero-header', hasHeroHeader);
   if (heroInFirstSection) {
     heroInFirstSection.classList.add('hero-integrated');
+  }
+  if (carouselInFirstSection) {
+    carouselInFirstSection.classList.add('showcase-integrated');
   }
 }
 
 function setInitialHeroHeaderMode(main) {
   const firstSection = main.querySelector(':scope > div:first-of-type');
   const heroInFirstSection = firstSection?.querySelector('.hero');
-  document.body.classList.toggle('has-hero-header', !!heroInFirstSection);
+  const carouselInFirstSection = firstSection?.querySelector('.showcase-carousel');
+  document.body.classList.toggle('has-hero-header', !!heroInFirstSection || !!carouselInFirstSection);
 }
 
 /**

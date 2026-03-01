@@ -2,11 +2,26 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 const AUTOPLAY_DELAY = 5500;
+const STYLE_CLASSES = ['style-clean', 'style-cinematic', 'style-minimal'];
+const STYLE_MAP = {
+  clean: 'style-clean',
+  cinematic: 'style-cinematic',
+  minimal: 'style-minimal',
+};
+const FIT_MAP = {
+  contain: 'fit-contain',
+  cover: 'fit-cover',
+};
+
+function normalizeToken(value = '') {
+  return value.trim().toLowerCase();
+}
 
 function optimizeSlideImage(picture, img) {
   const optimizedPicture = createOptimizedPicture(img.src, img.alt || '', false, [
+    { media: '(min-width: 1400px)', width: '2600' },
+    { media: '(min-width: 900px)', width: '2000' },
     { width: '1200' },
-    { width: '800' },
   ]);
 
   const optimizedImg = optimizedPicture.querySelector('img');
@@ -15,6 +30,50 @@ function optimizeSlideImage(picture, img) {
   }
 
   picture.replaceWith(optimizedPicture);
+}
+
+function readBlockOptions(rows) {
+  const options = {};
+  const slideRows = [];
+
+  rows.forEach((row) => {
+    const cells = [...row.children];
+    if (cells.length === 2 && !row.querySelector('picture, img')) {
+      const optionKey = normalizeToken(cells[0].textContent);
+      const optionValue = normalizeToken(cells[1].textContent);
+      if (['style', 'fit', 'autoplay'].includes(optionKey) && optionValue) {
+        options[optionKey] = optionValue;
+        return;
+      }
+    }
+    slideRows.push(row);
+  });
+
+  return { options, slideRows };
+}
+
+function applyBlockOptions(block, options) {
+  if (options.style && STYLE_MAP[options.style]) {
+    block.classList.add(STYLE_MAP[options.style]);
+  }
+
+  if (!STYLE_CLASSES.some((styleClass) => block.classList.contains(styleClass))) {
+    block.classList.add('style-clean');
+  }
+
+  if (options.fit && FIT_MAP[options.fit]) {
+    block.classList.add(FIT_MAP[options.fit]);
+  }
+
+  if (!block.classList.contains('fit-cover') && !block.classList.contains('fit-contain')) {
+    block.classList.add('fit-cover');
+  }
+
+  const autoplayDisabled = ['false', 'no', '0', 'off'].includes(options.autoplay)
+    || block.classList.contains('no-autoplay');
+  if (!autoplayDisabled) {
+    block.classList.add('autoplay');
+  }
 }
 
 function buildSlide(row, index, totalSlides) {
@@ -44,7 +103,6 @@ function buildSlide(row, index, totalSlides) {
       media.append(mediaCell.firstChild);
     }
     panel.append(media);
-    slide.classList.add('has-media');
   }
 
   const content = document.createElement('div');
@@ -63,12 +121,6 @@ function buildSlide(row, index, totalSlides) {
         content.append(extraCell.firstChild);
       }
     });
-
-  if (!content.children.length) {
-    const fallbackLabel = document.createElement('p');
-    fallbackLabel.textContent = `Slide ${index + 1}`;
-    content.append(fallbackLabel);
-  }
 
   panel.append(content);
   slide.append(panel);
@@ -107,7 +159,6 @@ function createControls(totalSlides) {
   });
 
   controls.append(previousButton, dots, nextButton);
-
   return {
     controls,
     dots,
@@ -124,7 +175,12 @@ export default function decorate(block) {
   const rows = [...block.children];
   if (!rows.length) return;
 
+  const { options, slideRows } = readBlockOptions(rows);
+  if (!slideRows.length) return;
+
   block.textContent = '';
+  applyBlockOptions(block, options);
+
   block.setAttribute('role', 'region');
   block.setAttribute('aria-roledescription', 'carousel');
   block.setAttribute('aria-label', 'Featured content carousel');
@@ -135,9 +191,10 @@ export default function decorate(block) {
   const track = document.createElement('ul');
   track.className = 'showcase-carousel-track';
   track.setAttribute('aria-live', 'polite');
+  track.style.willChange = 'transform';
 
-  rows.forEach((row, index) => {
-    const slide = buildSlide(row, index, rows.length);
+  slideRows.forEach((row, index) => {
+    const slide = buildSlide(row, index, slideRows.length);
     track.append(slide);
   });
 
@@ -147,6 +204,8 @@ export default function decorate(block) {
   const slides = [...track.children];
   if (slides.length < 2) {
     block.classList.add('is-single-slide');
+    slides[0].classList.add('is-active');
+    slides[0].setAttribute('aria-hidden', 'false');
     return;
   }
 
@@ -165,10 +224,12 @@ export default function decorate(block) {
 
   const updateSlide = (nextIndex) => {
     currentSlide = (nextIndex + slides.length) % slides.length;
-    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+    const slideOffset = viewport.clientWidth * currentSlide;
+    track.style.transform = `translate3d(-${slideOffset}px, 0, 0)`;
 
     slides.forEach((slide, index) => {
       const isActive = index === currentSlide;
+      slide.classList.toggle('is-active', isActive);
       slide.setAttribute('aria-hidden', isActive ? 'false' : 'true');
       dotButtons[index].setAttribute('aria-selected', isActive ? 'true' : 'false');
       dotButtons[index].classList.toggle('is-active', isActive);
@@ -177,9 +238,9 @@ export default function decorate(block) {
   };
 
   const stopAutoplay = () => {
-    if (autoplayId) {
-      window.clearInterval(autoplayId);
-    }
+    if (!autoplayId) return;
+    window.clearInterval(autoplayId);
+    autoplayId = null;
   };
 
   const startAutoplay = () => {
@@ -210,8 +271,7 @@ export default function decorate(block) {
     if (event.key === 'ArrowLeft') {
       updateSlide(currentSlide - 1);
       startAutoplay();
-    }
-    if (event.key === 'ArrowRight') {
+    } else if (event.key === 'ArrowRight') {
       updateSlide(currentSlide + 1);
       startAutoplay();
     }
@@ -224,12 +284,12 @@ export default function decorate(block) {
   viewport.addEventListener('pointerup', (event) => {
     const swipeDelta = event.clientX - touchStartX;
     if (Math.abs(swipeDelta) < 40) return;
-    if (swipeDelta > 0) {
-      updateSlide(currentSlide - 1);
-    } else {
-      updateSlide(currentSlide + 1);
-    }
+    updateSlide(swipeDelta > 0 ? currentSlide - 1 : currentSlide + 1);
     startAutoplay();
+  });
+
+  window.addEventListener('resize', () => {
+    updateSlide(currentSlide);
   });
 
   block.addEventListener('mouseenter', stopAutoplay);
@@ -237,11 +297,8 @@ export default function decorate(block) {
   block.addEventListener('focusin', stopAutoplay);
   block.addEventListener('focusout', startAutoplay);
   document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-      stopAutoplay();
-    } else {
-      startAutoplay();
-    }
+    if (document.hidden) stopAutoplay();
+    else startAutoplay();
   });
 
   updateSlide(0);
