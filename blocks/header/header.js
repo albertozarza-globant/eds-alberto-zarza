@@ -121,7 +121,7 @@ export default async function decorate(block) {
     navPath = `${langRoot}${navPath}`;
   }
   const fragment = await loadFragment(navPath);
-  
+
   // decorate nav DOM
   block.textContent = '';
   const nav = document.createElement('nav');
