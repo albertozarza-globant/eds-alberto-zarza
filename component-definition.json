@@ -91,7 +91,8 @@
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
                   "name": "Cards",
-                  "filter": "cards"
+                  "filter": "cards",
+                  "model": "cards"
                 }
               }
             }
@@ -166,7 +167,8 @@
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
                   "name": "Showcase Carousel",
-                  "filter": "showcase-carousel"
+                  "filter": "showcase-carousel",
+                  "model": "showcase-carousel"
                 }
               }
             }

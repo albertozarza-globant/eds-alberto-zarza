@@ -142,6 +142,119 @@
     ]
   },
   {
+    "id": "cards",
+    "fields": [
+      {
+        "component": "select",
+        "name": "layout",
+        "label": "Layout",
+        "options": [
+          {
+            "name": "default",
+            "value": ""
+          },
+          {
+            "name": "grid",
+            "value": "grid"
+          },
+          {
+            "name": "feature",
+            "value": "feature"
+          },
+          {
+            "name": "masonry",
+            "value": "masonry"
+          },
+          {
+            "name": "stack",
+            "value": "stack"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "name": "desktopColumns",
+        "label": "Desktop Columns",
+        "options": [
+          {
+            "name": "default",
+            "value": ""
+          },
+          {
+            "name": "2",
+            "value": "2"
+          },
+          {
+            "name": "3",
+            "value": "3"
+          },
+          {
+            "name": "4",
+            "value": "4"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "name": "cardStyle",
+        "label": "Card Style",
+        "options": [
+          {
+            "name": "default",
+            "value": ""
+          },
+          {
+            "name": "elevated",
+            "value": "elevated"
+          },
+          {
+            "name": "outline",
+            "value": "outline"
+          },
+          {
+            "name": "minimal",
+            "value": "minimal"
+          },
+          {
+            "name": "glass",
+            "value": "glass"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "name": "imageRatio",
+        "label": "Image Ratio",
+        "options": [
+          {
+            "name": "default",
+            "value": ""
+          },
+          {
+            "name": "16:10",
+            "value": "16-10"
+          },
+          {
+            "name": "16:9",
+            "value": "16-9"
+          },
+          {
+            "name": "4:3",
+            "value": "4-3"
+          },
+          {
+            "name": "1:1",
+            "value": "1-1"
+          },
+          {
+            "name": "3:4",
+            "value": "3-4"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "card",
     "fields": [
       {
@@ -157,6 +270,48 @@
         "value": "",
         "label": "Text",
         "valueType": "string"
+      },
+      {
+        "component": "select",
+        "name": "variant",
+        "label": "Card Variant",
+        "options": [
+          {
+            "name": "default",
+            "value": ""
+          },
+          {
+            "name": "featured",
+            "value": "featured"
+          },
+          {
+            "name": "wide",
+            "value": "wide"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "name": "tone",
+        "label": "Card Tone",
+        "options": [
+          {
+            "name": "default",
+            "value": ""
+          },
+          {
+            "name": "neutral",
+            "value": "neutral"
+          },
+          {
+            "name": "dark",
+            "value": "dark"
+          },
+          {
+            "name": "accent",
+            "value": "accent"
+          }
+        ]
       }
     ]
   },
@@ -212,6 +367,72 @@
         "value": "",
         "label": "Text",
         "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "showcase-carousel",
+    "fields": [
+      {
+        "component": "select",
+        "name": "style",
+        "label": "Style",
+        "options": [
+          {
+            "name": "default",
+            "value": ""
+          },
+          {
+            "name": "clean",
+            "value": "clean"
+          },
+          {
+            "name": "cinematic",
+            "value": "cinematic"
+          },
+          {
+            "name": "minimal",
+            "value": "minimal"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "name": "fit",
+        "label": "Image Fit",
+        "options": [
+          {
+            "name": "default",
+            "value": ""
+          },
+          {
+            "name": "cover",
+            "value": "cover"
+          },
+          {
+            "name": "contain",
+            "value": "contain"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "name": "autoplay",
+        "label": "Autoplay",
+        "options": [
+          {
+            "name": "default",
+            "value": ""
+          },
+          {
+            "name": "on",
+            "value": "true"
+          },
+          {
+            "name": "off",
+            "value": "false"
+          }
+        ]
       }
     ]
   },
