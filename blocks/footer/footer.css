@@ -1,20 +1,119 @@
 footer {
-  background-color: var(--light-color);
+  position: relative;
+  margin-top: var(--section-spacing);
+  border-top: 1px solid rgb(255 255 255 / 14%);
+  background:
+    radial-gradient(circle at 90% -40%, rgb(207 16 32 / 25%) 0%, rgb(207 16 32 / 0%) 45%),
+    linear-gradient(180deg, #101014 0%, #0b0b0e 100%);
+  color: #f0f0f2;
   font-size: var(--body-font-size-xs);
 }
 
-footer .footer > div {
-  margin: auto;
-  max-width: 1200px;
-  padding: 40px 24px 24px;
+footer::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: linear-gradient(90deg, #8f0611 0%, #cf1020 55%, #f72a3a 100%);
 }
 
-footer .footer p {
+footer .footer > div {
+  max-width: var(--section-max-width);
+  margin: 0 auto;
+  padding: 56px var(--section-gutter) 30px;
+}
+
+footer .footer .footer-grid {
+  display: grid;
+  gap: 22px;
+}
+
+footer .footer .footer-column > *:first-child {
+  margin-top: 0;
+}
+
+footer .footer .footer-column > *:last-child {
+  margin-bottom: 0;
+}
+
+footer .footer h1,
+footer .footer h2,
+footer .footer h3,
+footer .footer h4 {
+  margin: 0 0 0.5em;
+  color: #fff;
+  font-size: clamp(1rem, 1.7vw, 1.18rem);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+footer .footer p,
+footer .footer li {
   margin: 0;
+  color: rgb(240 240 242 / 80%);
+}
+
+footer .footer p + p {
+  margin-top: 0.6em;
+}
+
+footer .footer ul {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+footer .footer li + li {
+  margin-top: 0.45em;
+}
+
+footer .footer a:any-link {
+  color: #fff;
+  text-decoration-color: rgb(255 255 255 / 35%);
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+footer .footer a:hover {
+  color: #f75a67;
+  text-decoration-color: currentcolor;
+}
+
+footer .footer .footer-link-list a:any-link {
+  text-decoration: none;
+}
+
+footer .footer .footer-link-list a:any-link:hover {
+  text-decoration: underline;
+  text-decoration-color: rgb(247 90 103 / 48%);
+}
+
+footer .footer .footer-legal {
+  margin-top: 6px;
+  border-top: 1px solid rgb(255 255 255 / 16%);
+  padding-top: 18px;
+  font-size: 0.78rem;
+}
+
+@media (width >= 600px) {
+  footer .footer .footer-grid {
+    gap: 24px;
+  }
 }
 
 @media (width >= 900px) {
+  footer .footer .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 36px;
+  }
+
+  footer .footer .footer-legal {
+    grid-column: 1 / -1;
+    margin-top: 2px;
+  }
+}
+
+@media (width >= 1200px) {
   footer .footer > div {
-    padding: 40px 32px 24px;
+    padding-bottom: 34px;
   }
 }
