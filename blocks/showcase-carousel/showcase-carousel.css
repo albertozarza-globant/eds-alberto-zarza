@@ -118,6 +118,19 @@ main > .section.showcase-carousel-container .showcase-carousel-wrapper {
   text-wrap: balance;
 }
 
+.showcase-carousel .showcase-carousel-content .showcase-carousel-title {
+  margin: 0;
+  color: #fff;
+  font-family: var(--heading-font-family), 'Arial Black', impact, sans-serif;
+  font-weight: 900;
+  font-size: clamp(3rem, 9vw, 9rem);
+  line-height: 0.86;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-shadow: 0 12px 26px rgb(0 0 0 / 48%);
+  text-wrap: balance;
+}
+
 .showcase-carousel .showcase-carousel-content p {
   max-width: 64ch;
   margin-top: 0.55em;
@@ -125,6 +138,10 @@ main > .section.showcase-carousel-container .showcase-carousel-wrapper {
   font-size: clamp(1.05rem, 1.7vw, 1.44rem);
   text-shadow: 0 4px 14px rgb(0 0 0 / 34%);
   text-wrap: pretty;
+}
+
+.showcase-carousel .showcase-carousel-content .showcase-carousel-copy {
+  font-size: clamp(1.05rem, 1.7vw, 1.44rem);
 }
 
 .showcase-carousel .showcase-carousel-content a:any-link {
@@ -233,6 +250,11 @@ main > .section.showcase-carousel-container .showcase-carousel-wrapper {
   letter-spacing: 0.07em;
 }
 
+.showcase-carousel.style-cinematic .showcase-carousel-content .showcase-carousel-title {
+  font-size: clamp(3.4rem, 10vw, 10.5rem);
+  letter-spacing: 0.09em;
+}
+
 .showcase-carousel.style-cinematic .showcase-carousel-content .button {
   border-color: var(--accent-color);
   background: linear-gradient(90deg, #9a0915 0%, #cf1020 56%, #ed2a3a 100%);
@@ -247,6 +269,11 @@ main > .section.showcase-carousel-container .showcase-carousel-wrapper {
 .showcase-carousel.style-minimal .showcase-carousel-content h3 {
   text-transform: uppercase;
   letter-spacing: 0.045em;
+}
+
+.showcase-carousel.style-minimal .showcase-carousel-content .showcase-carousel-title {
+  font-size: clamp(2.6rem, 7.8vw, 8rem);
+  letter-spacing: 0.06em;
 }
 
 .showcase-carousel.style-minimal .showcase-carousel-content p {

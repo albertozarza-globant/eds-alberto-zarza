@@ -76,6 +76,19 @@ function applyBlockOptions(block, options) {
   }
 }
 
+function decorateSlideContent(content) {
+  const title = content.querySelector('h1, h2, h3, h4, h5, h6, p');
+  if (title) {
+    title.classList.add('showcase-carousel-title');
+  }
+
+  const copy = [...content.querySelectorAll('p')]
+    .find((paragraph) => !paragraph.classList.contains('showcase-carousel-title'));
+  if (copy) {
+    copy.classList.add('showcase-carousel-copy');
+  }
+}
+
 function buildSlide(row, index, totalSlides) {
   const slide = document.createElement('li');
   slide.className = 'showcase-carousel-slide';
@@ -122,6 +135,7 @@ function buildSlide(row, index, totalSlides) {
       }
     });
 
+  decorateSlideContent(content);
   panel.append(content);
   slide.append(panel);
 
